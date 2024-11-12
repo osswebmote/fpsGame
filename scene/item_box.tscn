@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=4 uid="uid://pv55tunjm7gr"]
+
+[ext_resource type="Texture2D" uid="uid://bu6lbkcqwdhkr" path="res://glb/item_box/item_box_0.jpg" id="1_7wwwn"]
+[ext_resource type="Script" path="res://script/item_box.gd" id="1_npmsj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x1m4x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpkmn"]
+size = Vector3(0.77771, 0.698608, 0.759521)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evofa"]
+resource_name = "crate_texture"
+transparency = 4
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.556593)
+albedo_texture = ExtResource("1_7wwwn")
+metallic = 0.276105
+roughness = 0.23952
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2gsvs"]
+_surfaces = [{
+"aabb": AABB(-22.3316, -18.1159, 0, 36.4749, 36.475, 36.475),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYAAAAFAAMAAAAEAAUAAwAGAAIAAwAFAAYAAgAHAAEAAgAGAAcAAQAEAAAAAQAHAAQA"),
+"name": "crate_texture",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAP//AAAAAP////8AAAAA//8AAAAAAAAAAAAA//8AAP//AAD//wAA////////AAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_r84ti"]
+resource_name = "Sketchfab_Scene_Object_0"
+_surfaces = [{
+"aabb": AABB(-22.3316, -18.1159, 0, 36.4749, 36.475, 36.475),
+"attribute_data": PackedByteArray("0FJ7/4MAe/+DAC6t0FIurdBSgwDQUtBSgwDQUoMAgwDcVtVWIqncViKpIqncViKpKanQUtxW0FLcVoMAKamDANxWLq0iqS6tIql7/9xWe/+DANxW0FLcVtBSIqmDACKp"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYACAAKAAkACAALAAoADAAOAA0ADAAPAA4AEAASABEAEAATABIAFAAWABUAFAAXABYA"),
+"material": SubResource("StandardMaterial3D_evofa"),
+"name": "crate_texture",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAP//AAAAAP////8AAAAA//8AAAAAAAAAAAAA////P///AAD///8//////////z8AAP//////PwAAAAAAAP8///8AAAAA/z///wAA////PwAAAAD///8///8AAAAAqir/////AACqKv///////6oq//8AAP//qir/////AAAAAAAA//8AAAAAAAD/////AAD///////8AAAAA//8AAKoqAAAAAAAAqioAAAAA//+qKgAA/////6oq/z//v/8//7//P/+//z//v/9//3//f/9//3//f/9//38FAPx/CgD6fwUA/H8AAP9/qqpUVaqqVFWqqlRVqqpUVf9//7//f/+//3//v/9//79UVaqqVFWqqlRVqqpUVaqq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2gsvs")
+
+[node name="Sketchfab_Scene" type="RigidBody3D"]
+script = ExtResource("1_npmsj")
+up_down_amount = 10.0
+time_multiple = 0.01
+noise = SubResource("FastNoiseLite_x1m4x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0862476, 0.371182, -0.0187378)
+shape = SubResource("BoxShape3D_dpkmn")
+
+[node name="Sketchfab_model" type="Node3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, 0.02, 0, -0.02, -8.74228e-10, 0, 0, 0)
+
+[node name="cd3b4644176d4edca8f8af030edb9ab5_obj_cleaner_materialmerger_gles" type="Node3D" parent="Sketchfab_model"]
+
+[node name="Object_2" type="MeshInstance3D" parent="Sketchfab_model"]
+mesh = SubResource("ArrayMesh_r84ti")
+skeleton = NodePath("")

@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://i30eoprjgp0c"]
+
+[ext_resource type="Script" path="res://script/infinity_world.gd" id="1_w4srr"]
+[ext_resource type="PackedScene" uid="uid://dwn16j1o137gi" path="res://scene/cyber_road.tscn" id="2_ekqrn"]
+[ext_resource type="PackedScene" uid="uid://b13ul5v3uvkhm" path="res://scene/result_menu.tscn" id="5_mq1uw"]
+[ext_resource type="PackedScene" uid="uid://crqtp03ijm5xo" path="res://scene/pistol.tscn" id="6_8yb07"]
+[ext_resource type="Shader" path="res://shader/neuron.gdshader" id="6_37wmu"]
+[ext_resource type="Shader" path="res://shader/blur.gdshader" id="6_n8j2g"]
+[ext_resource type="PackedScene" uid="uid://c6orj8swedrht" path="res://scene/night_city.tscn" id="7_sn8an"]
+[ext_resource type="Script" path="res://script/night_city.gd" id="8_3qarf"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ydqsg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etvlj"]
+shader = ExtResource("6_n8j2g")
+shader_parameter/blur = 0.495
+shader_parameter/brightness = 0.404
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gf63v"]
+shader = ExtResource("6_37wmu")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(1, 2, 4, 1)
+shader_parameter/wave_transparency = 1.0
+
+[node name="InfinityWorld" type="Node3D"]
+script = ExtResource("1_w4srr")
+mapArray = Array[PackedScene]([ExtResource("2_ekqrn")])
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.00848937, 0.576514, -0.817044, 0.00392155, 0.817047, 0.576557, 0.999956, -0.00809852, 0.00467564, 0, 0, 0)
+shadow_enabled = true
+
+[node name="collision_ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="collision_ground"]
+shape = SubResource("WorldBoundaryShape3D_ydqsg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+autostart = true
+
+[node name="ResultMenu" parent="." instance=ExtResource("5_mq1uw")]
+material = SubResource("ShaderMaterial_etvlj")
+
+[node name="game_time" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 18.0
+offset_right = 84.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 50
+text = "1:30"
+
+[node name="game_score" type="Label" parent="."]
+offset_left = 502.0
+offset_top = 15.0
+offset_right = 687.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 50
+text = "score: 0
+"
+vertical_alignment = 1
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_8yb07")]
+cam_rotation_amount = 0.3
+
+[node name="bullet_count" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 555.0
+offset_right = 129.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 50
+text = "7 / 7"
+
+[node name="item_effect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gf63v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sketchfab_Scene3" parent="." instance=ExtResource("7_sn8an")]
+transform = Transform3D(-40, 0, 6.03983e-06, 0, 40, 0, -6.03983e-06, 0, -40, 276.486, 0, 0)
+script = ExtResource("8_3qarf")
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("7_sn8an")]
+transform = Transform3D(-40, 0, 6.03983e-06, 0, 40, 0, -6.03983e-06, 0, -40, 118.209, 0, 0)
+script = ExtResource("8_3qarf")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

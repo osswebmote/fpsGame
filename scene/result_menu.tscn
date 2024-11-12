@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://b13ul5v3uvkhm"]
+
+[ext_resource type="Shader" path="res://shader/blur.gdshader" id="1_48ij1"]
+[ext_resource type="Script" path="res://script/label_score.gd" id="2_5gjhh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n40wf"]
+shader = ExtResource("1_48ij1")
+shader_parameter/blur = 2.5
+shader_parameter/brightness = 0.0
+
+[node name="ResultMenu" type="ColorRect"]
+material = SubResource("ShaderMaterial_n40wf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Result
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "게임 재개 버튼
+"
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "-1"
+horizontal_alignment = 1
+script = ExtResource("2_5gjhh")
