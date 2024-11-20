@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="3d_test"
-run/main_scene="res://scene/infinityWorld.tscn"
+run/main_scene="res://scene/main_menu1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://image/imu_splash.png"
 config/icon="res://icon.svg"
 
 [input]

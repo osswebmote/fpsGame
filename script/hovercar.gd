@@ -1,4 +1,5 @@
 extends RigidBody3D
+var object_type = 1
 
 @onready var pistol = get_tree().current_scene.get_node("Sketchfab_Scene")
 @onready var audioplayer = get_tree().current_scene.get_node("Sketchfab_Scene/car_crush_sound")

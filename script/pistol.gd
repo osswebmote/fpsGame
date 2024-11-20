@@ -3,7 +3,8 @@ extends CharacterBody3D
 enum {WALK, SHOT}
 var curAnim = WALK
 
-const SPEED = 800.0
+var SPEED = 0 
+var prev_velocity = 0.0
 @export var cam : Node3D
 @export var weapon_holder: Node3D
 
@@ -11,6 +12,7 @@ const SPEED = 800.0
 @export var weapon_sway_amount: float = 5
 @export var weapon_rotation_amount: float = 1
 @onready var def_weapon_holder_pos = weapon_holder.position
+
 @onready var animation = $cameraHolder/AnimationPlayer
 @onready var animation_tree = $cameraHolder/AnimationTree
 @onready var shot_sound = $shot_sound
@@ -19,6 +21,7 @@ const SPEED = 800.0
 @onready var break_glass_sound = $break_glass_sound
 @onready var break_crush_sound = $car_crush_sound
 @onready var on_shield_sound = $on_shield_sound
+@onready var game_bgm = $game_bgm
 
 #카메라 흔들림 초기변수들
 @onready var initial_rotation = cam.rotation_degrees as Vector3
@@ -28,16 +31,19 @@ const SPEED = 800.0
 @export var max_z := 5.0
 @export var noise: FastNoiseLite
 @export var noise_speed := 50.0
+@export var score_popup : PackedScene
+
 var trauma := 0.5
 var time := 0.0
 
-
 #애니메이션 상태관리 변수
+var is_game_start = false
 var is_shooting = false
 var is_sliding = false
 var reload_available = true
 var is_collide = false
 var is_shield = false
+var is_bgm = false
 
 #인게임 요소
 @onready var target = get_parent().get_node("Sketchfab_Scene")
@@ -61,16 +67,26 @@ var is_moving = false
 var current_direction;
 
 func _ready() -> void:
+	game_bgm.play()
+	game_bgm.stop()
+	
 	self.add_to_group("player")
+	await get_tree().create_timer(1).timeout
+	$count_number.play()
 	pass
 
 func _physics_process(delta: float) -> void:
-	if not run_sound.is_playing():
+	if is_game_start and !is_bgm:
+		game_bgm.play()
+		is_bgm = true
+		pass
+		
+	if not run_sound.is_playing() and is_game_start:
 		run_sound.play()
 
 	weapon_sway(delta)
 	if Input.is_action_just_pressed("l_button_clicked"):
-		if !is_shooting and !is_moving and bullet_count > 0.1:
+		if is_game_start and !is_shooting and !is_moving and bullet_count > 0.1:
 			is_shooting = true
 			shot_sound.play()
 			animation.play("Shoot")
@@ -116,7 +132,8 @@ func _physics_process(delta: float) -> void:
 		
 	weapon_bob(1, delta)
 	
-	velocity.x = SPEED * delta
+	prev_velocity = lerp(prev_velocity, SPEED * delta, 5 * delta)
+	velocity.x = prev_velocity
 	move_and_slide()
 	
 # 레일 변경 함수
@@ -151,7 +168,7 @@ func move_to_target(delta):
 #총으로 쐈을 때 피격 판정 매커니즘이 들어가 있음
 func _input(event):
 	# 마우스 클릭이 발생했는지 확인
-	if event is InputEventMouseButton and event.button_index == 1 and event.pressed and !is_shooting: #1이 left버튼 눌린거임 2가 right버튼 0은 안눌림
+	if is_game_start and event is InputEventMouseButton and event.button_index == 1 and event.pressed and !is_shooting: #1이 left버튼 눌린거임 2가 right버튼 0은 안눌림
 		# 현재 화면에 표시된 카메라 가져오기
 		var camera = get_viewport().get_camera_3d()
 		
@@ -172,13 +189,14 @@ func _input(event):
 			var click_position = result.position  # 월드 좌표계의 충돌 지점
 			if collider.is_in_group("enemy"): # 충돌한 객체가 target인지 확인
 				collider.hit()
+				start_score_popup(event.position, collider.object_type)
 	
 func cam_tilt(direction, delta):
 	if cam:
 		cam.rotation.x = lerp(cam.rotation.x, direction * cam_rotation_amount, 5 * delta) 
 		
 func weapon_bob(vel: float, delta):
-	if weapon_holder:
+	if is_game_start and weapon_holder:
 		if vel > 0:
 			var bob_amount: float = 0.01
 			var bob_freq: float = 0.01
@@ -239,3 +257,24 @@ func set_on_shield ():
 	
 func set_off_shield ():
 	is_shield = false
+
+func set_speed():
+	SPEED = 800.0
+	is_game_start = true
+	root.get_node("Sketchfab_Scene2").set_speed()
+	root.get_node("Sketchfab_Scene3").set_speed()
+	
+func start_score_popup(score_position : Vector2, n : int):
+	var popup = score_popup.instantiate()
+	popup.position = score_position  
+	if n > 0:
+		popup.text = "+" + str(n)  
+	elif n < 0:
+		popup.text = "-" + str(n)
+	else:
+		popup.text = ""  
+	get_parent().add_child(popup)
+
+func game_end ():
+	is_game_start = false
+	SPEED = 0

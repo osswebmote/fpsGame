@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+var object_type = 2
+
 @onready var body = $"."
 @onready var target_destroy = preload("res://scene/distroy_cat_bot.tscn")
 
@@ -18,6 +20,7 @@ var base_rotation_z
 var rand_index = randi_range(0, 100)
 var rand_await_time = randf_range(0, 2)
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	position = get_random_position()
 	base_x = position.x
@@ -47,8 +50,7 @@ func hit():
 	var broken_model = target_destroy.instantiate()
 	broken_model.transform = self.transform
 	get_parent().add_child(broken_model) 
-	
-	get_tree().current_scene.math_score(1)
+	get_tree().current_scene.math_score(2)
 	self.queue_free()
 
 func get_random_position() -> Vector3:

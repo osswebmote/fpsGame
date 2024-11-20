@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://pxcxbp8n0mm2"]
+
+[ext_resource type="Script" path="res://script/score_popup.gd" id="1_u7q43"]
+
+[node name="ScorePopup" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.427451, 0.976471, 0.172549, 1)
+theme_override_font_sizes/font_size = 30
+text = "+1"
+script = ExtResource("1_u7q43")

@@ -28,7 +28,7 @@ float fbm(vec2 uv) {
     float amplitude = 0.5;
     float frequency = 3.0;
 	float value = 0.0;
-	
+
     for(int i = 0; i < octaves; i++) {
         value += amplitude * noise(frequency * uv);
         amplitude *= 0.5;
@@ -50,7 +50,7 @@ void fragment() {
     float dist_right = 1.0 - uv.x;
     float dist_top = uv.y;
     float dist_bottom = 1.0 - uv.y;
-	
+
 	vec2 point = vec2(0.5, 0.5);
 	if (distance(point, uv) < 0.1) {
 		color = vec4(1.0,0.0,0.0,1.0);

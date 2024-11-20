@@ -1,20 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://i30eoprjgp0c"]
+[gd_scene load_steps=13 format=3 uid="uid://i30eoprjgp0c"]
 
 [ext_resource type="Script" path="res://script/infinity_world.gd" id="1_w4srr"]
 [ext_resource type="PackedScene" uid="uid://dwn16j1o137gi" path="res://scene/cyber_road.tscn" id="2_ekqrn"]
 [ext_resource type="PackedScene" uid="uid://b13ul5v3uvkhm" path="res://scene/result_menu.tscn" id="5_mq1uw"]
 [ext_resource type="PackedScene" uid="uid://crqtp03ijm5xo" path="res://scene/pistol.tscn" id="6_8yb07"]
 [ext_resource type="Shader" path="res://shader/neuron.gdshader" id="6_37wmu"]
-[ext_resource type="Shader" path="res://shader/blur.gdshader" id="6_n8j2g"]
 [ext_resource type="PackedScene" uid="uid://c6orj8swedrht" path="res://scene/night_city.tscn" id="7_sn8an"]
 [ext_resource type="Script" path="res://script/night_city.gd" id="8_3qarf"]
+[ext_resource type="Texture2D" uid="uid://b02flo4hldxcs" path="res://image/aim4.png" id="9_07lcc"]
+[ext_resource type="Script" path="res://script/aim.gd" id="10_tk6dm"]
+[ext_resource type="Script" path="res://script/start_count.gd" id="11_3rhch"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ydqsg"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_etvlj"]
-shader = ExtResource("6_n8j2g")
-shader_parameter/blur = 0.495
-shader_parameter/brightness = 0.404
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gf63v"]
 shader = ExtResource("6_37wmu")
@@ -36,43 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="collision_ground"]
 shape = SubResource("WorldBoundaryShape3D_ydqsg")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 90.0
-one_shot = true
-autostart = true
-
-[node name="ResultMenu" parent="." instance=ExtResource("5_mq1uw")]
-material = SubResource("ShaderMaterial_etvlj")
-
-[node name="game_time" type="Label" parent="."]
-offset_left = 44.0
-offset_top = 18.0
-offset_right = 84.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 50
-text = "1:30"
-
-[node name="game_score" type="Label" parent="."]
-offset_left = 502.0
-offset_top = 15.0
-offset_right = 687.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 50
-text = "score: 0
-"
-vertical_alignment = 1
-
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_8yb07")]
-cam_rotation_amount = 0.3
-
-[node name="bullet_count" type="Label" parent="."]
-offset_left = 26.0
-offset_top = 555.0
-offset_right = 129.0
-offset_bottom = 624.0
-theme_override_font_sizes/font_size = 50
-text = "7 / 7"
-
 [node name="item_effect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_gf63v")
 anchors_preset = 15
@@ -83,12 +43,116 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[node name="bullet_count" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -137.0
+offset_right = 194.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "7 / 7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_score" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_right = 93.0
+offset_bottom = 146.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "score: 0
+"
+vertical_alignment = 1
+
+[node name="game_time" type="Label" parent="."]
+offset_right = 188.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 50
+text = "1:30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_8yb07")]
+cam_rotation_amount = 0.3
+
 [node name="Sketchfab_Scene3" parent="." instance=ExtResource("7_sn8an")]
-transform = Transform3D(-40, 0, 6.03983e-06, 0, 40, 0, -6.03983e-06, 0, -40, 276.486, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 276.486, 0, 0)
 script = ExtResource("8_3qarf")
 
 [node name="Sketchfab_Scene2" parent="." instance=ExtResource("7_sn8an")]
-transform = Transform3D(-40, 0, 6.03983e-06, 0, 40, 0, -6.03983e-06, 0, -40, 118.209, 0, 0)
+transform = Transform3D(-40, 0, -3.49691e-06, 0, 40, 0, 3.49691e-06, 0, -40, 118.209, 0, 0)
 script = ExtResource("8_3qarf")
+
+[node name="aim" type="Sprite2D" parent="."]
+position = Vector2(157.75, 235.25)
+scale = Vector2(0.0971565, 0.0971565)
+texture = ExtResource("9_07lcc")
+script = ExtResource("10_tk6dm")
+
+[node name="start_count" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_3rhch")
+
+[node name="text_start" type="Label" parent="start_count"]
+layout_mode = 0
+offset_left = 1387.0
+offset_top = 780.0
+offset_right = 1733.0
+offset_bottom = 917.0
+theme_override_font_sizes/font_size = 100
+text = "START!"
+
+[node name="text_1" type="Label" parent="start_count"]
+layout_mode = 0
+offset_left = 1584.0
+offset_top = 32.0
+offset_right = 1930.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 100
+text = "1
+"
+
+[node name="text_2" type="Label" parent="start_count"]
+layout_mode = 0
+offset_left = 1452.0
+offset_top = 279.0
+offset_right = 1798.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 100
+text = "2"
+
+[node name="text_3" type="Label" parent="start_count"]
+layout_mode = 0
+offset_left = 1368.0
+offset_top = 498.0
+offset_right = 1714.0
+offset_bottom = 635.0
+theme_override_font_sizes/font_size = 100
+text = "3"
+
+[node name="text_ready" type="Label" parent="start_count"]
+layout_mode = 0
+offset_left = 807.0
+offset_top = -2.0
+offset_right = 1153.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 100
+text = "READY!"
+
+[node name="ResultMenu" parent="." instance=ExtResource("5_mq1uw")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,5 @@
 extends Node3D
-
-@onready var speed = get_tree().current_scene.get_node("Sketchfab_Scene").SPEED
+var SPEED = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,5 +8,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x += 11 * delta
+	position.x += SPEED * delta
 	pass
+
+func set_speed():
+	SPEED = 11
+
+func stop_speed():
+	SPEED = 0

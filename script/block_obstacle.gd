@@ -1,4 +1,5 @@
 extends RigidBody3D
+var object_type = 0
 
 @onready var pistol = get_tree().current_scene.get_node("Sketchfab_Scene")
 @onready var target_destroy = preload("res://scene/block_obstacle_destroyed.tscn")

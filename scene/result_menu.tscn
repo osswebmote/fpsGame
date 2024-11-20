@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b13ul5v3uvkhm"]
+[gd_scene load_steps=7 format=3 uid="uid://b13ul5v3uvkhm"]
 
 [ext_resource type="Shader" path="res://shader/blur.gdshader" id="1_48ij1"]
+[ext_resource type="FontFile" uid="uid://cy5oclgx6mk5b" path="res://font/Pretendard-Regular.otf" id="2_0qfnb"]
 [ext_resource type="Script" path="res://script/label_score.gd" id="2_5gjhh"]
+[ext_resource type="Script" path="res://script/result_menu.gd" id="2_l55x6"]
+[ext_resource type="Script" path="res://script/gohome_btn.gd" id="3_brtpq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n40wf"]
 shader = ExtResource("1_48ij1")
-shader_parameter/blur = 2.5
-shader_parameter/brightness = 0.0
+shader_parameter/blur = 1.08
+shader_parameter/brightness = 0.475
 
 [node name="ResultMenu" type="ColorRect"]
 material = SubResource("ShaderMaterial_n40wf")
@@ -15,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_l55x6")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -50,9 +54,11 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qfnb")
 theme_override_font_sizes/font_size = 30
 text = "게임 재개 버튼
 "
+script = ExtResource("3_brtpq")
 
 [node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -60,3 +66,5 @@ theme_override_font_sizes/font_size = 100
 text = "-1"
 horizontal_alignment = 1
 script = ExtResource("2_5gjhh")
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Button" method="_on_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvh02ttkmtpv3"]
+
+[ext_resource type="PackedScene" uid="uid://bue1yxj5f0cgh" path="res://scene/cyber_road_static.tscn" id="1_wmfkv"]
+[ext_resource type="PackedScene" uid="uid://c6orj8swedrht" path="res://scene/night_city.tscn" id="2_qjuhs"]
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="background2" parent="." instance=ExtResource("2_qjuhs")]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 400, 1700.44, 0, 0)
+
+[node name="background1" parent="." instance=ExtResource("2_qjuhs")]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 400, 75.1788, 0, 0)
+
+[node name="road3" parent="." instance=ExtResource("1_wmfkv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46, 0, 0)
+
+[node name="road2" parent="." instance=ExtResource("1_wmfkv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23, 0, 0)
+
+[node name="road1" parent="." instance=ExtResource("1_wmfkv")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.484526, -0.139225, -0.863627, -0.0681216, 0.990261, -0.121421, 0.87212, 0, -0.489291, 0, 1, 0)

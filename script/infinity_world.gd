@@ -1,6 +1,19 @@
 extends Node3D
 class_name InfinityWorld
-@onready var target_object = preload("res://scene/target1.tscn")
+
+var target_object = preload("res://scene/target1.tscn")
+var car_preload = preload("res://scene/hovercar.tscn")
+var cat_preload = preload("res://scene/cat_bot.tscn")
+var item_preload = preload("res://scene/item_box.tscn")
+var pistol_preload = preload("res://scene/pistol.tscn")
+var broken_glass_preload = preload("res://sounds/broken_glass.mp3")
+var car_crush_preload = preload("res://sounds/car_crush.wav")
+var ingame_bgm_preload = preload("res://sounds/ingame_bgm.mp3")
+var pistol_reload_preload = preload("res://sounds/pistol_reload2.mp3")
+var pistol_sound_preload = preload("res://sounds/pistol_sound2.wav")
+var run_in_road_preload = preload("res://sounds/run_in_road3.wav")
+var shield_sound_preload = preload("res://sounds/shield_sound.wav")
+var start_game_preload = preload("res://sounds/start_game.wav")
 
 @export var mapArray: Array[PackedScene] = []
 var amount = 3
@@ -22,7 +35,7 @@ func _ready() -> void:
 	for n in range(amount):
 		spawnMap(n*offset)
 		pass
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	set_left_time()
@@ -37,10 +50,14 @@ func spawnMap(n) -> void:
 	add_child(instance)
 
 func _on_timer_timeout() -> void:
-	get_tree().paused = true #이거 변수에 담아서 쓰면 작동안함 직접 이렇게 세팅해야 댐 
+	#get_tree().paused = true #이거 변수에 담아서 쓰면 작동안함 직접 이렇게 세팅해야 댐 
+	$Sketchfab_Scene.game_end()
+	$Sketchfab_Scene2.stop_speed()
+	$Sketchfab_Scene3.stop_speed()
 	result_menu.visible = true
 	game_score.visible = false
 	game_time.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	pass
 
 func get_score () -> int:

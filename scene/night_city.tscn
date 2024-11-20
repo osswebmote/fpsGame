@@ -1,11 +1,10 @@
-[gd_scene load_steps=145 format=4 uid="uid://c6orj8swedrht"]
+[gd_scene load_steps=123 format=4 uid="uid://c6orj8swedrht"]
 
 [ext_resource type="Texture2D" uid="uid://pbmcsr80oec1" path="res://glb/night_city/night_city_0.jpg" id="1_tm613"]
 [ext_resource type="Texture2D" uid="uid://13lc7gvdpc5w" path="res://glb/night_city/night_city_2.jpg" id="2_hjosw"]
 [ext_resource type="Texture2D" uid="uid://djcvnrqfayox3" path="res://glb/night_city/night_city_1.png" id="3_wkeew"]
 [ext_resource type="Texture2D" uid="uid://d2p7crqcyct1g" path="res://glb/night_city/night_city_3.png" id="4_cusox"]
 [ext_resource type="Texture2D" uid="uid://d01vtkewl7ji6" path="res://glb/night_city/night_city_4.jpg" id="5_cb11m"]
-[ext_resource type="Texture2D" uid="uid://ba745l4iglhpj" path="res://glb/night_city/night_city_5.jpg" id="6_vhyqa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_legqj"]
 resource_name = "material"
@@ -1418,335 +1417,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_10rug")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rqda"]
-resource_name = "material_3"
-cull_mode = 2
-albedo_color = Color(0, 0, 0, 1)
-metallic = 0.0799088
-emission_enabled = true
-emission_energy_multiplier = 3.40641
-emission_texture = ExtResource("6_vhyqa")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_4omcx"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_cwa0n"]
-resource_name = "Sketchfab_Scene_Object_48"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_4omcx")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_2qhwn"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_v283o"]
-resource_name = "Sketchfab_Scene_Object_50"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_2qhwn")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_rcjw0"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ldwjt"]
-resource_name = "Sketchfab_Scene_Object_51"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_rcjw0")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_jfjyp"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_xlt53"]
-resource_name = "Sketchfab_Scene_Object_52"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_jfjyp")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_bnp6a"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_b7tmx"]
-resource_name = "Sketchfab_Scene_Object_53"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bnp6a")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_2pafu"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_4aq6t"]
-resource_name = "Sketchfab_Scene_Object_54"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_2pafu")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_uvssr"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_cg75n"]
-resource_name = "Sketchfab_Scene_Object_60"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_uvssr")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_pi5su"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_8pkyd"]
-resource_name = "Sketchfab_Scene_Object_61"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_pi5su")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_wqqxm"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_h3550"]
-resource_name = "Sketchfab_Scene_Object_62"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_wqqxm")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ri8t3"]
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_h1hes"]
-resource_name = "Sketchfab_Scene_Object_64"
-_surfaces = [{
-"aabb": AABB(-0.0191187, 0, -2.57206, 0.0382373, 1e-05, 5.14411),
-"attribute_data": PackedByteArray("CkWGgApF/////4aA/////w=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_4rqda"),
-"name": "material_3",
-"primitive": 3,
-"uv_scale": Vector4(3.70783, 1.99181, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//VNX//wAA//9U1QAAAAAAAFTV//8AAAAAVNVU1aoqVNWqKlTVqipU1aoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ri8t3")
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_0ruie"]
 _surfaces = [{
 "aabb": AABB(-0.13261, 0, -0.0759865, 0.229431, 0.359386, 0.202482),
@@ -2497,52 +2167,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.930223, -0.533059, 0.00284758,
 [node name="������_005_28" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.749293, -0.867771, 0.00284758, 2.07549)
 
-[node name="Object_76" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_005_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.290818)
-mesh = SubResource("ArrayMesh_cwa0n")
-skeleton = NodePath("")
-
 [node name="������_006_29" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.44906, -1.41467, 0.00284758, 1.29991)
 
 [node name="������_007_30" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.636018, -1.96158, 0.00284758, 1.87462)
 
-[node name="Object_80" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_007_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.342613)
-mesh = SubResource("ArrayMesh_v283o")
-skeleton = NodePath("")
-
 [node name="������_008_31" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.887182, 3.02574, 0.00284758, 1.50173)
-
-[node name="Object_82" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_008_31"]
-mesh = SubResource("ArrayMesh_ldwjt")
-skeleton = NodePath("")
 
 [node name="������_009_32" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.787002, 2.69978, 0.00284758, 0.0211972)
 
-[node name="Object_84" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_009_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.276883)
-mesh = SubResource("ArrayMesh_xlt53")
-skeleton = NodePath("")
-
 [node name="������_010_33" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.618705, 2.15403, 0.00284758, 0.827114)
 
-[node name="Object_86" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_010_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3522)
-mesh = SubResource("ArrayMesh_b7tmx")
-skeleton = NodePath("")
-
 [node name="������_011_34" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.846014, 1.74426, 0.00284758, 1.89573)
-
-[node name="Object_88" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_011_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25757)
-mesh = SubResource("ArrayMesh_4aq6t")
-skeleton = NodePath("")
 
 [node name="������_012_35" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.913301, 1.40954, 0.00284758, 0.403401)
@@ -2562,36 +2203,17 @@ transform = Transform3D(5.05762e-07, 0, 1.25051, 0, 1, 0, -1, 0, 6.32459e-07, -0
 [node name="������_017_40" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(5.05762e-07, 0, 1.20079, 0, 1, 0, -1, 0, 6.07316e-07, -0.466299, 0.00284758, 1.287)
 
-[node name="Object_100" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_017_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217908, 0, 8.9407e-08)
-mesh = SubResource("ArrayMesh_cg75n")
-skeleton = NodePath("")
-
 [node name="������_018_41" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(5.05762e-07, 0, 1.14702, 0, 1, 0, -1, 0, 5.8012e-07, 0.126123, 0.00284758, 1.75797)
 
-[node name="Object_102" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_018_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217908, 0, 9.68575e-08)
-mesh = SubResource("ArrayMesh_8pkyd")
-skeleton = NodePath("")
-
 [node name="������_019_42" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(5.05762e-07, 0, 1.2352, 0, 1, 0, -1, 0, 6.24716e-07, 1.17333, 0.00284758, 2.22223)
-
-[node name="Object_104" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_019_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217908, 0, 1.19209e-07)
-mesh = SubResource("ArrayMesh_h3550")
-skeleton = NodePath("")
 
 [node name="������_020_43" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(5.05762e-07, 0, 1.0944, 0, 1, 0, -1, 0, 5.53507e-07, 0.340413, 0.00284758, -2.71147)
 
 [node name="������_021_44" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(5.05762e-07, 0, 1.47268, 0, 1, 0, -1, 0, 7.44826e-07, 1.26512, 0.00284758, -2.17262)
-
-[node name="Object_108" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/������_021_44"]
-mesh = SubResource("ArrayMesh_h1hes")
-skeleton = NodePath("")
 
 [node name="������_022_45" type="Node3D" parent="Sketchfab_model/root/GLTF_SceneRootNode"]
 transform = Transform3D(5.05762e-07, 0, 1.04494, 0, 1, 0, -1, 0, 5.28489e-07, 0.184867, 0.00284758, -1.74276)

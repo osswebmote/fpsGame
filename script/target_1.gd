@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 var body 
+var object_type = 1
 # Called when the node enters the scene tree for the first time.
 @onready var target_destroy = preload("res://scene/target_destroy2.tscn")
 

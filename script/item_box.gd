@@ -1,4 +1,5 @@
 extends RigidBody3D
+var object_type = 0
 
 @onready var body = $"."
 @onready var target_destroy = preload("res://scene/item_box_destroyed.tscn")
