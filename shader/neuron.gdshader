@@ -90,7 +90,7 @@ void fragment() {
     float alpha = wave_transparency * smoothstep(0.1, 0.3, brightness); // 밝기에 따른 알파 값 조정
     // 화면 가장자리 부분에서만 효과가 나타나도록 설정
     float edge_effect = smoothstep(edge_thickness, 0.0, min(min(uv.x, 1. - uv.x), min(uv.y, 1. - uv.y)));
-
+	
     // 알파 값에 가장자리 효과를 곱하여 사이드에서만 이펙트가 나타나게 함
     COLOR = vec4(col, alpha * edge_effect * 0.5);
 }

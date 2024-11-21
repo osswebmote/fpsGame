@@ -248,6 +248,10 @@ func start_collide_obstacle_effect():
 	if !is_collide and !is_shield:
 		trauma = 1.0
 		root.math_score(-3)
+		#이 부분에 피격시 점수 깍이는 애니메이션 추가
+		#var screen_size = root.get_viewport_rect().size
+		#screen_size /= 2
+		start_score_popup(Vector2(500,500),-3)
 		is_collide = true 
 	is_shield = false
 	root.off_shield_effect()
@@ -270,7 +274,9 @@ func start_score_popup(score_position : Vector2, n : int):
 	if n > 0:
 		popup.text = "+" + str(n)  
 	elif n < 0:
-		popup.text = "-" + str(n)
+		popup.modulate = Color(1,0.15,0.15)
+		popup.scale = Vector2(3, 3)
+		popup.text = str(n)
 	else:
 		popup.text = ""  
 	get_parent().add_child(popup)
