@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 func get_noise_from_seed(seed: int) -> float:
 	noise.seed = seed
 	return noise.get_noise_1d(Time.get_ticks_msec() * time_multiple)
-
+	
 func hit():
 	root.get_node("Sketchfab_Scene").set_on_shield()
 	root.get_node("Sketchfab_Scene/on_shield_sound").play()

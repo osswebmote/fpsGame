@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b13ul5v3uvkhm" path="res://scene/result_menu.tscn" id="5_mq1uw"]
 [ext_resource type="PackedScene" uid="uid://crqtp03ijm5xo" path="res://scene/pistol.tscn" id="6_8yb07"]
 [ext_resource type="Shader" path="res://shader/neuron.gdshader" id="6_37wmu"]
+[ext_resource type="Texture2D" uid="uid://byta3lve68i13" path="res://image/aim_circle.png" id="7_477a2"]
 [ext_resource type="PackedScene" uid="uid://c6orj8swedrht" path="res://scene/night_city.tscn" id="7_sn8an"]
 [ext_resource type="Script" path="res://script/night_city.gd" id="8_3qarf"]
-[ext_resource type="Texture2D" uid="uid://b02flo4hldxcs" path="res://image/aim4.png" id="9_07lcc"]
 [ext_resource type="Script" path="res://script/aim.gd" id="10_tk6dm"]
 [ext_resource type="Script" path="res://script/start_count.gd" id="11_3rhch"]
 
@@ -93,9 +93,9 @@ transform = Transform3D(-40, 0, -3.49691e-06, 0, 40, 0, 3.49691e-06, 0, -40, 118
 script = ExtResource("8_3qarf")
 
 [node name="aim" type="Sprite2D" parent="."]
-position = Vector2(157.75, 235.25)
-scale = Vector2(0.0971565, 0.0971565)
-texture = ExtResource("9_07lcc")
+position = Vector2(162.519, 230.481)
+scale = Vector2(0.195486, 0.195486)
+texture = ExtResource("7_477a2")
 script = ExtResource("10_tk6dm")
 
 [node name="start_count" type="Control" parent="."]

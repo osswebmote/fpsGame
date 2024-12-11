@@ -1,0 +1,147 @@
+[gd_scene load_steps=19 format=3 uid="uid://b1gtro6gcsi7y"]
+
+[ext_resource type="Script" path="res://script/imu_adjust.gd" id="1_hyoyq"]
+[ext_resource type="PackedScene" uid="uid://ccdut3r4inr3h" path="res://scene/iphone.tscn" id="1_o437o"]
+[ext_resource type="PackedScene" uid="uid://cbn3s2t5xu0tb" path="res://scene/monitor.tscn" id="2_i3y3h"]
+[ext_resource type="Shader" path="res://shader/green_color.gdshader" id="4_melv4"]
+[ext_resource type="Script" path="res://script/adjust_2dColor.gd" id="5_mi2gj"]
+[ext_resource type="Shader" path="res://shader/adjust_2dColor.gdshader" id="5_rscj7"]
+[ext_resource type="Script" path="res://script/adjust_color_container.gd" id="5_y4gp8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qshmp"]
+sky_top_color = Color(1.54018e-06, 0.47583, 0.720386, 1)
+sky_horizon_color = Color(0.55, 0.661208, 0.713346, 1)
+ground_horizon_color = Color(0.55, 0.661208, 0.713346, 1)
+
+[sub_resource type="Sky" id="Sky_ntemb"]
+sky_material = SubResource("ProceduralSkyMaterial_qshmp")
+
+[sub_resource type="Environment" id="Environment_c2l1h"]
+background_mode = 2
+sky = SubResource("Sky_ntemb")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6b3mh"]
+size = Vector2(50, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0rug"]
+render_priority = 0
+shader = ExtResource("4_melv4")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mdn1i"]
+material = SubResource("ShaderMaterial_c0rug")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 1.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_5tlia"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jp43y"]
+shader = ExtResource("5_rscj7")
+shader_parameter/col = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgfif"]
+shader = ExtResource("5_rscj7")
+shader_parameter/col = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmfp6"]
+shader = ExtResource("5_rscj7")
+shader_parameter/col = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xa6q"]
+shader = ExtResource("5_rscj7")
+shader_parameter/col = Vector3(0.2, 0.2, 0.2)
+
+[node name="ImuAdjust" type="Node3D"]
+script = ExtResource("1_hyoyq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c2l1h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="iphone" parent="." instance=ExtResource("1_o437o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40651, 1.68125)
+
+[node name="monitor" parent="." instance=ExtResource("2_i3y3h")]
+transform = Transform3D(0.999711, 0.0165365, 0.0174285, -0.0174285, 0.998477, 0.052336, -0.0165365, -0.0526246, 0.998477, 0, 0.903689, 0.406785)
+
+[node name="ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_6b3mh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87009, 2.51086)
+
+[node name="guideline_container" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.407, 1.681)
+
+[node name="guideline" type="MeshInstance3D" parent="guideline_container"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.85)
+mesh = SubResource("CylinderMesh_mdn1i")
+skeleton = NodePath("../..")
+
+[node name="guidecircle0" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.781434, 0, 0.623989, 0, 1, 0, -0.623989, 0, 0.781434, 0, 1.4, 0.5)
+mesh = SubResource("SphereMesh_5tlia")
+skeleton = NodePath("../guidecircle1")
+
+[node name="guidecircle1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999113, 0, 0.0421023, 0, 1, 0, -0.0421023, 0, 0.999113, -1.27157, 2.20678, 0.620401)
+mesh = SubResource("SphereMesh_5tlia")
+
+[node name="guidecircle2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.996455, 0, 0.08413, 0, 1, 0, -0.08413, 0, 0.996455, 1.28907, 2.22, 0.62)
+mesh = SubResource("SphereMesh_5tlia")
+skeleton = NodePath("../guidecircle1")
+
+[node name="guidecircle3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.985844, 0, 0.167664, 0, 1, 0, -0.167664, 0, 0.985844, -1.30446, 0.945617, 0.557704)
+mesh = SubResource("SphereMesh_5tlia")
+skeleton = NodePath("../guidecircle1")
+
+[node name="guidecircle4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.943778, 0, 0.33058, 0, 1, 0, -0.33058, 0, 0.943778, 1.33381, 0.90613, 0.53643)
+mesh = SubResource("SphereMesh_5tlia")
+skeleton = NodePath("../guidecircle1")
+
+[node name="color_container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_y4gp8")
+
+[node name="left_top" type="ColorRect" parent="color_container"]
+material = SubResource("ShaderMaterial_jp43y")
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_mi2gj")
+
+[node name="right_top" type="ColorRect" parent="color_container"]
+material = SubResource("ShaderMaterial_dgfif")
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_mi2gj")
+
+[node name="left_bottom" type="ColorRect" parent="color_container"]
+material = SubResource("ShaderMaterial_dmfp6")
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_mi2gj")
+
+[node name="right_bottom" type="ColorRect" parent="color_container"]
+material = SubResource("ShaderMaterial_2xa6q")
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_mi2gj")

@@ -7,7 +7,7 @@ func _ready():
 	var screen_size = get_viewport_rect().size
 	var texture_size = texture.get_size()
 
-	scale.x = (screen_size.x / texture_size.x) * 1.1
+	scale.x = (screen_size.x / texture_size.x) 
 	scale.y = screen_size.y / texture_size.y
 	pass
 
@@ -17,5 +17,5 @@ func _process(delta: float) -> void:
 	var screen_size = get_viewport_rect().size
 	var texture_size = texture.get_size()
 
-	scale.x = (screen_size.x / texture_size.x) * 1.1
+	scale.x = (screen_size.x / texture_size.x) 
 	scale.y = screen_size.y / texture_size.y

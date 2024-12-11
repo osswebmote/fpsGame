@@ -23,3 +23,8 @@ func _process(delta: float) -> void:
 func _on_texture_start_btn_button_up() -> void:
 	get_tree().change_scene_to_file("res://scene/loading.tscn")
 	pass # Replace with function body.
+
+
+func _on_texture_connect_btn_pressed() -> void:
+	get_tree().change_scene_to_file("res://scene/connect_main.tscn")
+	pass # Replace with function body.

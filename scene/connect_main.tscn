@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs4di18ylpm3l"]
+
+[ext_resource type="Texture2D" uid="uid://b1t8t3yo7jh0c" path="res://image/imu_splash.png" id="1_uu6c3"]
+[ext_resource type="Script" path="res://script/main_menu_background.gd" id="2_8qgi1"]
+[ext_resource type="Texture2D" uid="uid://tsyno4gmmcjt" path="res://image/imu_runner_logo.png" id="3_hv5ap"]
+[ext_resource type="Script" path="res://script/main_logo.gd" id="4_fkkil"]
+[ext_resource type="Texture2D" uid="uid://bdht1kati4xxn" path="res://image/connect_ui_btn.png" id="5_yf24h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtcx4"]
+atlas = ExtResource("5_yf24h")
+region = Rect2(55.5, 172.5, 725, 125)
+
+[node name="ConnectMain" type="Node2D"]
+
+[node name="main_menu_background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.67451)
+scale = Vector2(0.638632, 0.633574)
+texture = ExtResource("1_uu6c3")
+centered = false
+script = ExtResource("2_8qgi1")
+
+[node name="main_logo" type="Sprite2D" parent="."]
+position = Vector2(-492, 4)
+scale = Vector2(0.326087, 0.331731)
+texture = ExtResource("3_hv5ap")
+centered = false
+script = ExtResource("4_fkkil")
+
+[node name="connect_desktop_btn" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="connect_desktop_btn"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 400.0
+offset_right = 1016.0
+offset_bottom = 525.0
+texture_normal = SubResource("AtlasTexture_qtcx4")
+stretch_mode = 0

@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfbvxpxibpwip"]
+[gd_scene load_steps=13 format=3 uid="uid://dfbvxpxibpwip"]
 
 [ext_resource type="Texture2D" uid="uid://b1t8t3yo7jh0c" path="res://image/imu_splash.png" id="1_ktr5e"]
 [ext_resource type="Script" path="res://script/main_menu_1.gd" id="1_nftxs"]
 [ext_resource type="Script" path="res://script/main_menu_background.gd" id="2_wgu7x"]
+[ext_resource type="Texture2D" uid="uid://tsyno4gmmcjt" path="res://image/imu_runner_logo.png" id="4_3o8ph"]
 [ext_resource type="Texture2D" uid="uid://b4bjr6vvox78x" path="res://image/game_ui.png" id="4_5oxs0"]
+[ext_resource type="Script" path="res://script/main_logo.gd" id="5_xobm0"]
 [ext_resource type="Script" path="res://script/texture_start_btn.gd" id="7_dnebo"]
 [ext_resource type="Script" path="res://script/texture_connect_btn.gd" id="7_ws7d8"]
 [ext_resource type="Script" path="res://script/texture_setting_btn.gd" id="8_cu0un"]
@@ -21,17 +23,21 @@ atlas = ExtResource("4_5oxs0")
 region = Rect2(260.249, 279.282, 197.654, 162.515)
 
 [node name="MainMenu1" type="Node2D"]
-position = Vector2(-12, -6)
 script = ExtResource("1_nftxs")
 
 [node name="main_menu_background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.67451)
-position = Vector2(6, -2)
 scale = Vector2(0.638632, 0.633574)
 texture = ExtResource("1_ktr5e")
 centered = false
-offset = Vector2(10, 10)
 script = ExtResource("2_wgu7x")
+
+[node name="main_logo" type="Sprite2D" parent="."]
+position = Vector2(417, 3)
+scale = Vector2(0.326087, 0.331731)
+texture = ExtResource("4_3o8ph")
+centered = false
+script = ExtResource("5_xobm0")
 
 [node name="texture_start_btn" type="TextureButton" parent="."]
 offset_left = 460.0
@@ -61,3 +67,4 @@ stretch_mode = 0
 script = ExtResource("8_cu0un")
 
 [connection signal="button_up" from="texture_start_btn" to="." method="_on_texture_start_btn_button_up"]
+[connection signal="pressed" from="texture_connect_btn" to="." method="_on_texture_connect_btn_pressed"]

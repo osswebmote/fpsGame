@@ -190,6 +190,10 @@ func _input(event):
 			if collider.is_in_group("enemy"): # 충돌한 객체가 target인지 확인
 				collider.hit()
 				start_score_popup(event.position, collider.object_type)
+
+func imu_input(event):
+	#여기에 위 _input코드들 가져와서 넣고 스마트폰으로 터치했을 때 이 함수 실행 시키도록 세팅하는게 좋을 듯 
+	pass
 	
 func cam_tilt(direction, delta):
 	if cam:
