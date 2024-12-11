@@ -6,12 +6,13 @@ func _ready() -> void:
 	var screen_size = get_viewport_rect().size
 	
 	var tween = create_tween()
-	$texture_start_btn.modulate = Color(1, 1, 1, 0)  # 알파 값 0
-	$texture_connect_btn.modulate = Color(1, 1, 1, 0)  # 알파 값 0
-	$texture_setting_btn.modulate = Color(1, 1, 1, 0)  # 알파 값 0
+	$texture_start_btn.modulate = Color(1, 1, 1, 0) # 알파 값 0
+	$texture_connect_btn.modulate = Color(1, 1, 1, 0) # 알파 값 0
+	$texture_setting_btn.modulate = Color(1, 1, 1, 0) # 알파 값 0
 	tween.parallel().tween_property($texture_start_btn, "modulate", Color(1, 1, 1, 1), 1.0)
 	tween.parallel().tween_property($texture_connect_btn, "modulate", Color(1, 1, 1, 1), 1.0)
 	tween.parallel().tween_property($texture_setting_btn, "modulate", Color(1, 1, 1, 1), 1.0)
+	global_data.connect_svr()
 	pass # Replace with function body.
 
 

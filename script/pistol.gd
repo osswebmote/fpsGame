@@ -3,9 +3,9 @@ extends CharacterBody3D
 enum {WALK, SHOT}
 var curAnim = WALK
 
-var SPEED = 0 
+var SPEED = 0
 var prev_velocity = 0.0
-@export var cam : Node3D
+@export var cam: Node3D
 @export var weapon_holder: Node3D
 
 @export var cam_rotation_amount: float = 1
@@ -31,7 +31,7 @@ var prev_velocity = 0.0
 @export var max_z := 5.0
 @export var noise: FastNoiseLite
 @export var noise_speed := 50.0
-@export var score_popup : PackedScene
+@export var score_popup: PackedScene
 
 var trauma := 0.5
 var time := 0.0
@@ -67,6 +67,8 @@ var is_moving = false
 var current_direction;
 
 func _ready() -> void:
+	global_data.connect("callback", imu_input)
+	global_data.start_imu()
 	game_bgm.play()
 	game_bgm.stop()
 	
@@ -93,12 +95,12 @@ func _physics_process(delta: float) -> void:
 			trauma = 0.8
 			root.set_bullet_count(1)
 			bullet_count = root.get_bullet_count()
-			root.put_bullet_label_count ()
+			root.put_bullet_label_count()
 			
 			await get_tree().create_timer(0.5).timeout
 			is_shooting = false
 		
-	if  bullet_count <= 0.1 and reload_available and !is_shooting:
+	if bullet_count <= 0.1 and reload_available and !is_shooting:
 		is_shooting = true
 		reload_available = false
 
@@ -108,7 +110,7 @@ func _physics_process(delta: float) -> void:
 		
 		root.set_max_bullet_count()
 		bullet_count = root.get_bullet_count()
-		root.put_bullet_label_count ()
+		root.put_bullet_label_count()
 		
 		reload_available = true
 		is_shooting = false
@@ -125,7 +127,7 @@ func _physics_process(delta: float) -> void:
 	if is_shooting:
 		cam_shake(delta)
 	else:
-		cam.rotation_degrees = lerp(cam.rotation_degrees, initial_rotation, 5 * delta) 
+		cam.rotation_degrees = lerp(cam.rotation_degrees, initial_rotation, 5 * delta)
 	
 	if is_collide:
 		collide_obstacle_effect(delta)
@@ -153,7 +155,7 @@ func move_to_target(delta):
 	# 이동 진행률을 업데이트하고 1.0을 넘지 않도록 제한
 	move_progress += delta / move_duration
 	move_progress = clamp(move_progress, 0.0, 1.0)
-	var eased_progress = ease(move_progress, 0.2) #0.0~1.0 사이의 수가 각각의 커프 값으로 구분되어 있음 설명서 참고하기
+	var eased_progress = ease(move_progress, 0.2) # 0.0~1.0 사이의 수가 각각의 커프 값으로 구분되어 있음 설명서 참고하기
 	var fixed_x = global_transform.origin.x
 	var new_position = start_position.move_toward(target_position, eased_progress * target_position.distance_to(start_position))
 	global_transform.origin = Vector3(fixed_x, new_position.y, new_position.z)
@@ -168,14 +170,14 @@ func move_to_target(delta):
 #총으로 쐈을 때 피격 판정 매커니즘이 들어가 있음
 func _input(event):
 	# 마우스 클릭이 발생했는지 확인
-	if is_game_start and event is InputEventMouseButton and event.button_index == 1 and event.pressed and !is_shooting: #1이 left버튼 눌린거임 2가 right버튼 0은 안눌림
+	if is_game_start and event is InputEventMouseButton and event.button_index == 1 and event.pressed and !is_shooting: # 1이 left버튼 눌린거임 2가 right버튼 0은 안눌림
 		# 현재 화면에 표시된 카메라 가져오기
 		var camera = get_viewport().get_camera_3d()
 		
 		# 클릭된 화면 위치를 기준으로 레이 발사 시작점과 방향 벡터 계산림
 		var from = camera.project_ray_origin(event.position)
 		var to_normal = camera.project_ray_normal(event.position)
-		var to = from + to_normal * 1000  # 레이의 방향과 길이 설정
+		var to = from + to_normal * 1000 # 레이의 방향과 길이 설정
 		var power = 20.0
 		
 		# 레이와 충돌 검사 수행
@@ -186,18 +188,56 @@ func _input(event):
 		#충돌 지점이 있는 경우 해당 위치 가져오기
 		if result:
 			var collider = result.collider
-			var click_position = result.position  # 월드 좌표계의 충돌 지점
+			var click_position = result.position # 월드 좌표계의 충돌 지점
 			if collider.is_in_group("enemy"): # 충돌한 객체가 target인지 확인
 				collider.hit()
 				start_score_popup(event.position, collider.object_type)
 
-func imu_input(event):
-	#여기에 위 _input코드들 가져와서 넣고 스마트폰으로 터치했을 때 이 함수 실행 시키도록 세팅하는게 좋을 듯 
-	pass
+func imu_input(event: String, x: float, y: float):
+	var screenPos = Vector2(x / 1920 * get_viewport().size.x, y / 1080 * get_viewport().size.y)
+	Input.warp_mouse(screenPos)
+	
+	var camera = get_viewport().get_camera_3d()
+	var ray_origin = camera.project_ray_normal(screenPos)
+
+	if event == "fire":
+		if is_game_start and !is_shooting and !is_moving and bullet_count > 0.1:
+			is_shooting = true
+			shot_sound.play()
+			animation.play("Shoot")
+			trauma = 0.8
+			root.set_bullet_count(1)
+			bullet_count = root.get_bullet_count()
+			root.put_bullet_label_count()
+			
+			await get_tree().create_timer(0.5).timeout
+			is_shooting = false
+		# 클릭된 화면 위치를 기준으로 레이 발사 시작점과 방향 벡터 계산림
+		var from = camera.project_ray_origin(screenPos)
+		var to_normal = camera.project_ray_normal(screenPos)
+		var to = from + to_normal * 1000 # 레이의 방향과 길이 설정
+		var power = 20.0
+		
+		# 레이와 충돌 검사 수행
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		var result = space_state.intersect_ray(query)
+		
+		#충돌 지점이 있는 경우 해당 위치 가져오기
+		if result:
+			var collider = result.collider
+			var click_position = result.position # 월드 좌표계의 충돌 지점
+			if collider.is_in_group("enemy"): # 충돌한 객체가 target인지 확인
+				collider.hit()
+				start_score_popup(screenPos, collider.object_type)
+	elif event == "left":
+		change_rail(-1)
+	elif event == "right":
+		change_rail(1)
 	
 func cam_tilt(direction, delta):
 	if cam:
-		cam.rotation.x = lerp(cam.rotation.x, direction * cam_rotation_amount, 5 * delta) 
+		cam.rotation.x = lerp(cam.rotation.x, direction * cam_rotation_amount, 5 * delta)
 		
 func weapon_bob(vel: float, delta):
 	if is_game_start and weapon_holder:
@@ -234,16 +274,16 @@ func cam_shake(delta) -> void:
 	time += delta
 	trauma = max(trauma - delta * trauma_reduction_rate, 0.0)
 	
-	cam.rotation_degrees.x = initial_rotation.x + max_x * get_shake_intensity() * get_noise_from_seed(0) 
-	cam.rotation_degrees.y = initial_rotation.y + max_y * get_shake_intensity() * get_noise_from_seed(1) 
-	cam.rotation_degrees.z = initial_rotation.z + max_z * get_shake_intensity() * (1 + get_noise_from_seed(2) / 2) 
+	cam.rotation_degrees.x = initial_rotation.x + max_x * get_shake_intensity() * get_noise_from_seed(0)
+	cam.rotation_degrees.y = initial_rotation.y + max_y * get_shake_intensity() * get_noise_from_seed(1)
+	cam.rotation_degrees.z = initial_rotation.z + max_z * get_shake_intensity() * (1 + get_noise_from_seed(2) / 2)
 	
 func collide_obstacle_effect(delta):
 	time += delta
 	trauma = max(trauma - delta * trauma_reduction_rate, 0.0)
 	
-	cam.rotation_degrees.x = initial_rotation.x + 60 * get_shake_intensity() * get_noise_from_seed(0) 
-	cam.rotation_degrees.y = initial_rotation.y + 60 * get_shake_intensity() * get_noise_from_seed(1) 
+	cam.rotation_degrees.x = initial_rotation.x + 60 * get_shake_intensity() * get_noise_from_seed(0)
+	cam.rotation_degrees.y = initial_rotation.y + 60 * get_shake_intensity() * get_noise_from_seed(1)
 	cam.rotation_degrees.z = initial_rotation.z + 60 * get_shake_intensity() * get_noise_from_seed(2)
 	if (trauma < 0.01):
 		is_collide = false
@@ -255,15 +295,15 @@ func start_collide_obstacle_effect():
 		#이 부분에 피격시 점수 깍이는 애니메이션 추가
 		var screen_size = root.get_viewport().get_visible_rect().size
 		screen_size /= 2
-		start_score_popup(screen_size,-3)
-		is_collide = true 
+		start_score_popup(screen_size, -3)
+		is_collide = true
 	is_shield = false
 	root.off_shield_effect()
 
-func set_on_shield ():
+func set_on_shield():
 	is_shield = true
 	
-func set_off_shield ():
+func set_off_shield():
 	is_shield = false
 
 func set_speed():
@@ -272,19 +312,19 @@ func set_speed():
 	root.get_node("Sketchfab_Scene2").set_speed()
 	root.get_node("Sketchfab_Scene3").set_speed()
 	
-func start_score_popup(score_position : Vector2, n : int):
+func start_score_popup(score_position: Vector2, n: int):
 	var popup = score_popup.instantiate()
-	popup.position = score_position  
+	popup.position = score_position
 	if n > 0:
-		popup.text = "+" + str(n)  
+		popup.text = "+" + str(n)
 	elif n < 0:
-		popup.modulate = Color(1,0.05,0.05)
+		popup.modulate = Color(1, 0.05, 0.05)
 		popup.scale = Vector2(3, 3)
 		popup.text = str(n)
 	else:
-		popup.text = ""  
+		popup.text = ""
 	get_parent().add_child(popup)
 
-func game_end ():
+func game_end():
 	is_game_start = false
 	SPEED = 0
