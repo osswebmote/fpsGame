@@ -15,20 +15,21 @@ func _process(_delta):
 	# get_ready_state() tells you what state the socket is in.
 	var state = socket.get_ready_state()
 	if state == WebSocketPeer.STATE_OPEN:
-		isOpen = true
 		while socket.get_available_packet_count():
 			var json = JSON.new()
 			var err = json.parse(socket.get_packet().get_string_from_utf8())
 			if err != OK:
 				push_error(err)
 			var parsed = json.data;
-			callback.emit(parsed["e"], parsed["x"], parsed["y"])
-			
+			if isOpen:
+				callback.emit(parsed["e"], parsed["x"], parsed["y"])
 	elif state == WebSocketPeer.STATE_CLOSING:
 		pass
 	elif state == WebSocketPeer.STATE_CLOSED:
 		isOpen = false
 		set_process(false) # Stop processing.
+	elif state == WebSocketPeer.STATE_CONNECTING:
+		pass
 		
 
 func _connect_svr(result, code, headers, body) -> void:
@@ -41,10 +42,15 @@ func _connect_svr(result, code, headers, body) -> void:
 	print(connect_id)
 	
 	socket = WebSocketPeer.new()
-	socket.connect_to_url("wss://demo.mansuiki.com/ws/game/" + connect_id)
+	err = socket.connect_to_url("wss://demo.mansuiki.com/ws/game/" + connect_id)
+	if err != OK:
+		print(err)
+		push_error(err)
+	set_process(true)
+	print("connected")
 
 func start_imu() -> void:
-	set_process(true)
+	isOpen = true
 	
 
 func connect_svr() -> void:
