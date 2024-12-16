@@ -13,6 +13,8 @@ func _ready() -> void:
 	tween.parallel().tween_property($texture_connect_btn, "modulate", Color(1, 1, 1, 1), 1.0)
 	tween.parallel().tween_property($texture_setting_btn, "modulate", Color(1, 1, 1, 1), 1.0)
 	global_data.connect_svr()
+	await get_tree().create_timer(2).timeout 
+	$main_connect_code.text = "CONNECT CODE\n" + global_data.connect_id + "\n"
 	pass # Replace with function body.
 
 

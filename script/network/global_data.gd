@@ -2,6 +2,7 @@ extends Node
 	
 var socket: WebSocketPeer
 var isOpen = false
+var connect_id
 signal callback(event:String, x:float, y:float)
 
 func _ready():
@@ -38,7 +39,7 @@ func _connect_svr(result, code, headers, body) -> void:
 	if err != OK:
 		push_error(err)
 		
-	var connect_id = json.data["id"]
+	connect_id = json.data["id"]
 	print(connect_id)
 	
 	socket = WebSocketPeer.new()

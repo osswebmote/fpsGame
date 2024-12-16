@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfbvxpxibpwip"]
+[gd_scene load_steps=14 format=3 uid="uid://dfbvxpxibpwip"]
 
 [ext_resource type="Texture2D" uid="uid://b1t8t3yo7jh0c" path="res://image/imu_splash.png" id="1_ktr5e"]
 [ext_resource type="Script" path="res://script/main_menu_1.gd" id="1_nftxs"]
@@ -21,6 +21,9 @@ region = Rect2(36.2413, 288.066, 202.046, 144.946)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pen4v"]
 atlas = ExtResource("4_5oxs0")
 region = Rect2(260.249, 279.282, 197.654, 162.515)
+
+[sub_resource type="Theme" id="Theme_3krba"]
+default_font_size = 60
 
 [node name="MainMenu1" type="Node2D"]
 script = ExtResource("1_nftxs")
@@ -65,6 +68,16 @@ offset_bottom = 435.0
 texture_normal = SubResource("AtlasTexture_pen4v")
 stretch_mode = 0
 script = ExtResource("8_cu0un")
+
+[node name="main_connect_code" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 577.0
+offset_bottom = 418.0
+theme = SubResource("Theme_3krba")
+theme_override_colors/default_color = Color(0.870588, 0.870588, 0.870588, 1)
+text = "CONNECTING..."
+scroll_active = false
 
 [connection signal="button_up" from="texture_start_btn" to="." method="_on_texture_start_btn_button_up"]
 [connection signal="pressed" from="texture_connect_btn" to="." method="_on_texture_connect_btn_pressed"]
